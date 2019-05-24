@@ -1,7 +1,8 @@
 'use strict';
+const serverHost = 'http://localhost:3000'
 
 let getMakeCredentialsChallenge = (formBody) => {
-    return fetch('/webauthn/register', {
+    return fetch(serverHost + '/webauthn/register', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -19,7 +20,7 @@ let getMakeCredentialsChallenge = (formBody) => {
 }
 
 let sendWebAuthnResponse = (body) => {
-    return fetch('/webauthn/response', {
+    return fetch(serverHost + '/webauthn/response', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -59,7 +60,7 @@ $('#register').submit(function(event) {
         })
         .then((response) => {
             if(response.status === 'ok') {
-                loadMainContainer()   
+                loadMainContainer()
             } else {
                 alert(`Server responed with error. The message is: ${response.message}`);
             }
@@ -68,7 +69,7 @@ $('#register').submit(function(event) {
 })
 
 let getGetAssertionChallenge = (formBody) => {
-    return fetch('/webauthn/login', {
+    return fetch(serverHost + '/webauthn/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -109,7 +110,7 @@ $('#login').submit(function(event) {
         })
         .then((response) => {
             if(response.status === 'ok') {
-                loadMainContainer()   
+                loadMainContainer()
             } else {
                 alert(`Server responed with error. The message is: ${response.message}`);
             }

@@ -44,6 +44,10 @@ let checkIfLoggedIn = () => {
         })
 }
 
+let showFooter = () => {
+    return !!process
+}
+
 $('#logoutButton').click(() => {
     fetch('/logout', {credentials: 'include'});
 
